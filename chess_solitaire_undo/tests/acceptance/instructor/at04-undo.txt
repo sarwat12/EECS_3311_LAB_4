@@ -1,0 +1,122 @@
+-- This use case file shows undo/redo on at04.txt
+
+-- Set up some chess pieces for the game
+
+-- state 0
+
+setup_chess (N, 2, 1)
+-- state 1 
+-- [resulting state of executing setup_chess(N, 2, 1) from state 0]
+
+setup_chess (R, 1, 4)
+-- state 2
+-- [resulting state of executing setup_chess(R, 1, 4) from state 1]
+
+setup_chess (P, 2, 4)
+-- state 3
+-- [resulting state of executing setup_chess(P, 2, 4) from state 2]
+
+setup_chess (B, 4, 3)
+-- state 4
+-- [resulting state of executing setup_chess(B, 4, 3) from state 3]
+
+undo -- back to state 3
+undo -- back to state 2
+undo -- back to state 1
+undo -- back to state 0
+
+undo -- error: nothing to undo
+
+redo -- forth to state 1
+redo -- forth to state 2
+redo -- forth to state 3
+redo -- forth to state 4
+
+redo -- error: nothing to redo
+
+start_game
+-- state 5
+-- [resulting state of executing start_game from state 4]
+
+redo -- nothing to redo
+
+moves(4, 3) -- does not result in a new state
+
+move_and_capture(4, 3, 2, 1)
+-- state 6
+-- [resulting state of executing move_and_capture(4, 3, 2, 1) from state 5]
+
+moves(1, 4) -- does not result in a new state
+
+move_and_capture(1, 4, 2, 4)
+-- state 7
+-- [resulting state of executing move_and_capture(1, 4, 2, 4) from state 6]
+
+moves(2, 4) -- does not result in a new state
+move_and_capture(2, 4, 2, 1)
+-- state 8
+-- [resulting state of executing move_and_capture(2, 4, 2, 1) from state 7]
+
+undo -- back to state 7
+undo -- back to state 6
+undo -- back to state 5
+undo -- back to state 4
+undo -- back to state 3
+undo -- back to state 2
+undo -- back to state 1
+undo -- back to state 0
+
+undo -- nothing to undo
+
+redo -- forth to state 1
+redo -- forth to state 2
+redo -- forth to state 3
+redo -- forth to state 4
+redo -- forth to state 5
+redo -- forth to state 6
+redo -- forth to state 7
+redo -- forth to state 8
+
+redo -- nothing to redo
+
+-- Error: game already over
+moves(2, 1) -- does not result in a new state (because it's an error)
+-- Error: game already over
+move_and_capture(2, 1, 3, 3) -- does not result in a new state (because it's an error)
+
+reset_game
+
+undo -- nothing to undo
+redo -- nothing to redo
+
+-- After the reset, we default the set to state 0.
+-- state 0
+
+setup_chess (N, 2, 1)
+-- state 1 
+-- [resulting state of executing setup_chess(N, 2, 1) from state 0]
+
+setup_chess (R, 1, 4)
+-- state 2
+-- [resulting state of executing setup_chess(R, 1, 4) from state 1]
+
+setup_chess (P, 2, 4)
+-- state 3
+-- [resulting state of executing setup_chess(P, 2, 4) from state 2]
+
+setup_chess (B, 4, 3)
+-- state 4
+-- [resulting state of executing setup_chess(B, 4, 3) from state 3]
+
+undo -- back to state 3
+undo -- back to state 2
+undo -- back to state 1
+undo -- back to state 0
+
+start_game
+-- state 1
+-- [resulting state of executing start_game from state 0]
+
+redo -- nothing to redo, as if no chess pieces have been set up
+
+undo -- to state 0
