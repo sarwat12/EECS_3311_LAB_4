@@ -5,10 +5,10 @@ note
 	revision: "$Revision$"
 
 expanded class
-	ETF_MODEL_ACCESS
+	CHESS_UNDO_ACCESS
 
 feature
-	m: ETF_MODEL
+	m: CHESS_UNDO
 		once
 			create Result.make
 		end

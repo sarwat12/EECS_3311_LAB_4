@@ -11,7 +11,7 @@ create
 	make
 
 feature -- Queries
-	model: ETF_MODEL
+	model: CHESS_UNDO
 
 	error: BOOLEAN
 
@@ -32,7 +32,7 @@ feature -- Constructor
 	make
 			-- Initialize.
 		local
-			model_access: ETF_MODEL_ACCESS
+			model_access: CHESS_UNDO_ACCESS
 		do
 			model := model_access.m
 			create sys.make
