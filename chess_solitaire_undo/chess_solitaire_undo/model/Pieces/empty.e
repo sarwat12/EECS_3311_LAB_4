@@ -1,11 +1,13 @@
 note
-	description: "Summary description for {PAWN}."
+	description: "Summary description for {EMPTY}."
 	author: ""
 	date: "$Date$"
 	revision: "$Revision$"
 
+--Class representing a null piece
+
 class
-	PAWN
+	EMPTY
 
 inherit
 	CHESS_PIECE
@@ -13,26 +15,18 @@ inherit
 create
 	make
 
-feature --Constructor
+feature
+
 	make(t: STRING)
 		do
 			type := t
 		end
 
-feature --Block existence and move validity
-
-	--Valid moves for Pawn
 	is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
 		do
 			Result := FALSE
-			if is_valid_index (r2, c2) then
-				if (r2 = r1 - 1) and (c2 = c1 + 1 or c2 = c1 - 1) then
-					Result := TRUE
-				end
-			end
 		end
 
-	--Checking block existence for Pawn
 	block_exists(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
 		do
 			Result := FALSE

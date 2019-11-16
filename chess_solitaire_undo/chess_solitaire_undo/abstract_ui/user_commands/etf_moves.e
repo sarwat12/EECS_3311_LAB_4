@@ -20,7 +20,7 @@ feature -- command
 				model.set_error ("  Error: Game not yet started%N")
 			elseif row < 1 or row > 4 or col < 1 or col > 4 then
 				model.set_error ("  Error: (" + row.out + ", " + col.out + ") not a valid slot%N")
-			elseif model.chess_board.board.item (row, col) = 0 then
+			elseif model.chess_board.board.item (row, col).type ~ "NULL" then
 				model.set_error ("  Error: Slot @ (" + row.out + ", " + col.out + ") not occupied%N")
 			else
 				model.moves(row, col)

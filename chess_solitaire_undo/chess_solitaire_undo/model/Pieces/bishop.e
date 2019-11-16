@@ -10,8 +10,11 @@ class
 inherit
 	CHESS_PIECE
 
+create
+	make
+
 feature --Constructor
-	make(t: INTEGER)
+	make(t: STRING)
 		do
 			type := t
 		end

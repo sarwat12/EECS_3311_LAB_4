@@ -18,21 +18,18 @@ create
 feature --Constructor
 	make
 		do
-			create board.make_filled (0, 4, 4)
-			create piece_mapping.make_empty
-			set_mapping
+			create board.make_filled (create {EMPTY}.make ("NULL"), 4, 4)
 		ensure
 			empty_board:
 				across 1 |..| 4 is i all
 					across 1 |..| 4 is j all
-						board.item (i, j) = 0
+						board.item (i, j).type ~ "NULL"
 					end
 				end
 		end
 
 feature --Board Implementation
-	board: ARRAY2[INTEGER] --multi-dimesional board for storing and representing chess pieces
-	piece_mapping: ARRAY[STRING]  --Mapping for each chess piece to its corresponding integer
+	board: ARRAY2[CHESS_PIECE] --multi-dimesional board for storing and representing chess pieces
 	x: INTEGER --for later use in ETF_MOVES
 	y: INTEGER --for later use in ETF_MOVES
 	moves_trigger: INTEGER  --signal for initiating ET_MOVES output
@@ -42,71 +39,29 @@ feature --Commands
 	capture(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER)
 		do
 			board.force (board.item (r1, c1), r2, c2)
-			board.force (0, r1, c1)
-		end
-
-    set_mapping
-		do
-			piece_mapping.force ("K", piece_mapping.count + 1)
-			piece_mapping.force ("Q", piece_mapping.count + 1)
-			piece_mapping.force ("N", piece_mapping.count + 1)
-			piece_mapping.force ("B", piece_mapping.count + 1)
-			piece_mapping.force ("R", piece_mapping.count + 1)
-			piece_mapping.force ("P", piece_mapping.count + 1)
+			board.force (create {EMPTY}.make ("NULL"), r1, c1)
 		end
 
 	print_moves(row: INTEGER_32 ; col: INTEGER_32): STRING
 	do
 		create Result.make_empty
 		across 1 |..| 4 is i loop
-				Result.append ("  ")
-				across 1 |..| 4 is j loop
-					if i = row and j = col then
-						Result.append(piece_mapping.item (board.item (i, j)))
+			Result.append ("  ")
+			across 1 |..| 4 is j loop
+				if i = row and j = col then
+					Result.append(board.item (i, j).type)
+				else
+					if board.item (row, col).is_valid_move (row, col, i, j) then
+						Result.append("+")
 					else
-						if piece_mapping.item (board.item (row, col)) ~ "K" then
-							if king_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end  --and (not block_exists_queen (row, col, i, j))
-						elseif piece_mapping.item (board.item (row, col)) ~ "Q" then
-							if queen_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end
-						elseif piece_mapping.item (board.item (row, col)) ~ "B" then
-							if bishop_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end
-						elseif piece_mapping.item (board.item (row, col)) ~ "N" then
-							if knight_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end
-						elseif piece_mapping.item (board.item (row, col)) ~ "R" then
-							if rook_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end
-						elseif piece_mapping.item (board.item (row, col)) ~ "P" then
-							if pawn_is_valid_move (row, col, i, j) then
-								Result.append("+")
-							else
-								Result.append (".")
-							end
-						end
+						Result.append (".")
 					end
 				end
-				if i /= 4 then
-					Result.append ("%N")
-				end
 			end
+			if i /= 4 then
+				Result.append ("%N")
+			end
+		end
 	end
 
 	print_board: STRING
@@ -115,10 +70,10 @@ feature --Commands
 			across 1 |..| 4 is i loop
 				Result.append ("  ")
 				across 1 |..| 4 is j loop
-					if board.item (i, j) ~ 0 then
+					if board.item (i, j).type ~ "NULL" then
 						Result.append(".")
 					else
-						Result.append (piece_mapping.item (board.item (i, j)))
+						Result.append (board.item (i, j).type)
 					end
 				end
 				if i /= 4 then
@@ -141,7 +96,6 @@ feature --Commands
 			do
 				y := col
 			end
-
 
 feature --Redefined 'out' feature
 	out: STRING
