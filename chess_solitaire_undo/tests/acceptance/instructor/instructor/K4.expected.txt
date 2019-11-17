@@ -1,0 +1,104 @@
+  # of chess pieces on board: 0
+  Game being Setup...
+  ....
+  ....
+  ....
+  ....
+->setup_chess(N,2,3)
+  # of chess pieces on board: 1
+  Game being Setup...
+  ....
+  ..N.
+  ....
+  ....
+->setup_chess(P,1,1)
+  # of chess pieces on board: 2
+  Game being Setup...
+  P...
+  ..N.
+  ....
+  ....
+->setup_chess(P,2,2)
+  # of chess pieces on board: 3
+  Game being Setup...
+  P...
+  .PN.
+  ....
+  ....
+->setup_chess(P,3,1)
+  # of chess pieces on board: 4
+  Game being Setup...
+  P...
+  .PN.
+  P...
+  ....
+->setup_chess(N,1,2)
+  # of chess pieces on board: 5
+  Game being Setup...
+  PN..
+  .PN.
+  P...
+  ....
+->setup_chess(N,3,2)
+  # of chess pieces on board: 6
+  Game being Setup...
+  PN..
+  .PN.
+  PN..
+  ....
+->setup_chess(N,4,2)
+  # of chess pieces on board: 7
+  Game being Setup...
+  PN..
+  .PN.
+  PN..
+  .N..
+->start_game
+  # of chess pieces on board: 7
+  Game In Progress...
+  PN..
+  .PN.
+  PN..
+  .N..
+->move_and_capture(2,2,1,1)
+  # of chess pieces on board: 6
+  Game In Progress...
+  PN..
+  ..N.
+  PN..
+  .N..
+->move_and_capture(2,3,1,1)
+  # of chess pieces on board: 6
+  Error: Block exists between (2, 3) and (1, 1)
+  PN..
+  ..N.
+  PN..
+  .N..
+->move_and_capture(2,3,3,1)
+  # of chess pieces on board: 6
+  Error: Block exists between (2, 3) and (3, 1)
+  PN..
+  ..N.
+  PN..
+  .N..
+->move_and_capture(2,3,1,1)
+  # of chess pieces on board: 6
+  Error: Block exists between (2, 3) and (1, 1)
+  PN..
+  ..N.
+  PN..
+  .N..
+->move_and_capture(4,2,2,3)
+  # of chess pieces on board: 6
+  Error: Block exists between (4, 2) and (2, 3)
+  PN..
+  ..N.
+  PN..
+  .N..
+->move_and_capture(2,3,4,2)
+  # of chess pieces on board: 5
+  Game Over: You Lose!
+  PN..
+  ....
+  PN..
+  .N..

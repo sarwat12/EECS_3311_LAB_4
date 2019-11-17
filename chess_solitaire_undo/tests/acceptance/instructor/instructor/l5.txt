@@ -1,0 +1,10 @@
+--Test rook capture
+setup_chess(R,1,1)
+setup_chess(R,1,4)
+setup_chess(R,4,4)
+setup_chess(R,4,1)
+start_game
+move_and_capture(1,1,1,4)
+move_and_capture(1,4,4,4)
+move_and_capture(4,4,4,1)
+reset_game

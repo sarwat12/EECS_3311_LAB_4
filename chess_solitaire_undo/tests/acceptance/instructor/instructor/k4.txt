@@ -1,0 +1,20 @@
+--tests knight blockage horizontally
+setup_chess(N,2,3)
+setup_chess(P,1,1)
+setup_chess(P,2,2)
+
+
+setup_chess(P,3,1)
+setup_chess(N,1,2)
+setup_chess(N,3,2)
+setup_chess(N,4,2)
+start_game
+
+move_and_capture(2,2,1,1)
+
+
+move_and_capture(2,3,1,1)
+move_and_capture(2,3,3,1)
+move_and_capture(2,3,1,1)
+move_and_capture(4,2,2,3)
+move_and_capture(2,3,4,2)

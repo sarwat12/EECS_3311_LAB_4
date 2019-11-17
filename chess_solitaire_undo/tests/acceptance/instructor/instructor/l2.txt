@@ -1,0 +1,17 @@
+--Reset game in the middle of a game and at the start
+setup_chess(B,1,1)
+setup_chess(K,2,2)
+setup_chess(R,4,1)
+start_game
+move_and_capture(4,1,1,1)
+reset_game
+setup_chess(B,1,1)
+setup_chess(K,2,2)
+setup_chess(R,4,1)
+start_game
+reset_game
+setup_chess(B,1,1)
+setup_chess(K,2,2)
+setup_chess(R,4,1)
+start_game
+reset_game

@@ -37,9 +37,14 @@ feature --Board Implementation
 feature --Commands
 
 	capture(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER)
+		local
+			a, b: CHESS_PIECE
 		do
-			board.force (board.item (r1, c1), r2, c2)
-			board.force (create {EMPTY}.make ("NULL"), r1, c1)
+			a := board.item (r1, c1)
+			create {EMPTY} b.make ("NULL")
+			board.compare_objects
+			board.put (b, r1, c1)
+			board.put (a, r2, c2)
 		end
 
 	print_moves(row: INTEGER_32 ; col: INTEGER_32): STRING
