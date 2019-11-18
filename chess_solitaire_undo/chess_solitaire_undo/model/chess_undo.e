@@ -30,15 +30,17 @@ feature {NONE} -- Initialization
 			game_started:= FALSE
 			game_finished:= FALSE
 			create start.make_from_string("  Game being Setup...%N")
+			create history.make
 		ensure
 			no_pieces: num_pieces = 0
 		end
 
 feature --Implementation
 
-	chess_board: CHESS_UNDO_BOARD
-	error: STRING
-	num_pieces: INTEGER
+	history: HISTORY --A history of commands to be stored for later use in undo/redo pattern
+	chess_board: CHESS_UNDO_BOARD --reference to chess board
+	error: STRING	--reference for error reporting
+	num_pieces: INTEGER  --number of pieces
 	game_started: BOOLEAN
 	game_finished: BOOLEAN
 	start: STRING
@@ -96,6 +98,11 @@ feature -- chess operations
 			track: ARRAY[TUPLE[a: CHESS_PIECE; row: INTEGER; col: INTEGER]]
 		do
 			game_started := TRUE
+			if num_pieces = 0 then
+				set_error ("  Game Over: You Lose!%N")
+				game_finished := TRUE
+			end
+
 			if num_pieces = 1 then
 				set_error ("  Game Over: You Win!%N")
 				game_finished := TRUE
