@@ -119,9 +119,9 @@ feature --Checking validity for general chess piece moves
 			end
 
 			if r2 - r1 = -2 and c2 - c1 = -2 then --checking up-left diagonal
---				if chess_board.board.item (r1 - 1, c1 - 1).type /~ "NULL" then
---					Result := TRUE
---				end
+				if chess_board.board.item (r1 - 1, c1 - 1).type /~ "NULL" then
+					Result := TRUE
+				end
 			end
 			if r2 - r1 = -3 and c2 - c1 = -3 then --checking up-left diagonal
 				if (chess_board.board.item (r1 - 1, c1 - 1).type /~ "NULL") or (chess_board.board.item (r1 - 2, c1 - 2).type /~ "NULL") then

@@ -18,12 +18,6 @@ feature -- command
 				model.set_error ("  Error: Game already started%N")
 			else
 				model.start_game
-				if model.num_pieces = 1 then
-					model.set_error ("  Game Over: You Win!%N")
-					model.set_game_finished (TRUE)
-				else
-					model.set_error ("  Game In Progress...%N")
-				end
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
