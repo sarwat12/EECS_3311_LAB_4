@@ -4,6 +4,8 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
+--Fix move and cpature and game_status
+
 class
 	CHESS_UNDO
 
@@ -95,6 +97,7 @@ feature -- chess operations
 			game_started := TRUE
 			set_start
 			game_status
+			set_error ("  Game In Progress...%N")
 		end
 
 	moves(row: INTEGER_32 ; col: INTEGER_32)
@@ -143,6 +146,7 @@ feature -- chess operations
 					chess_board.capture (r1, c1, r2, c2)
 					num_pieces := num_pieces - 1
 					game_status
+					set_error ("  Game In Progress...%N")
 				end
 			else
 				set_error ("  Error: Invalid move of " + chess_board.board.item (r1, c1).type + " from ("
@@ -158,7 +162,21 @@ feature -- chess operations
 			if num_pieces = 1 then
 				set_error ("  Game Over: You Win!%N")
 				game_finished := TRUE
-			elseif num_pieces > 1 then
+			elseif num_pieces = 2 then
+				create track.make_empty
+				across 1 |..| 4 is i loop
+					across 1 |..| 4 is j loop
+						if chess_board.board.item (i, j).type /~ "NULL" then
+							track.force ([chess_board.board.item (i, j), i, j], track.count + 1)
+						end
+					end
+				end
+				if not (track.item (1).a.is_valid_move (track.item (1).row, track.item (1).col, track.item (2).row, track.item (2).col) or
+					track.item (2).a.is_valid_move (track.item (2).row, track.item (2).col, track.item (1).row, track.item (1).col)) then
+					set_error ("  Game Over: You Lose!%N")
+					game_finished := TRUE
+				end
+			else
 				create track.make_empty
 				trigger := num_pieces * (num_pieces - 1)
 				across 1 |..| 4 is i loop
@@ -168,10 +186,10 @@ feature -- chess operations
 						end
 					end
 				end
-				across 1 |..| track.count is m loop
+				across 1 |..| num_pieces is m loop
 					across 1 |..| track.count is n loop
 						if (track.item (n).row /~ track.item (m).row) and (track.item (n).col /~ track.item (m).col) then
-							if not track.item (m).a.is_valid_move (track.item (m).row, track.item (m).col, track.item (n).row, track.item (n).col) then
+							if (not track.item (m).a.is_valid_move (track.item (m).row, track.item (m).col, track.item (n).row, track.item (n).col)) then
 								trigger := trigger - 1
 							end
 						end
@@ -181,8 +199,6 @@ feature -- chess operations
 					set_error ("  Game Over: You Lose!%N")
 					game_finished := TRUE
 				end
-			else
-				set_error ("  Game In Progress...%N")
 			end
 		end
 

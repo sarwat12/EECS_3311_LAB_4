@@ -42,15 +42,35 @@ feature --Block existence and move validity
 					end
 					Result := TRUE
 				end
-				if (r2 = r1 + 1 or r2 = r1 - 1) and (c2 = c1 - 2) then --checking left2 and (up1 or down1)
-					if chess_board.board.item (r1, c1 - 1).type /~ "NULL" or chess_board.board.item (r1, c1 - 2).type /~ "NULL" then
+				if (r2 = r1 - 1) and (c2 = c1 - 2) then --checking up1 and left2
+					if is_valid_index (r1 - 1, c1) and is_valid_index (r1 - 1, c1 - 1) then
+						if chess_board.board.item (r1 - 1, c1).type /~ "NULL" or chess_board.board.item (r1 - 1, c1 - 1).type /~ "NULL" then
 						knight_block := TRUE
+						end
 					end
 					Result := TRUE
 				end
-				if (r2 = r1 + 1 or r2 = r1 - 1) and (c2 = c1 + 2) then --checking right2 and (up1 or down1)
-					if chess_board.board.item (r1, c1 + 1).type /~ "NULL" or chess_board.board.item (r1, c1 + 2).type /~ "NULL" then
+				if (r2 = r1 - 1) and (c2 = c1 + 2) then --checking up1  and right2
+					if is_valid_index (r1 - 1, c1) and is_valid_index (r1 - 1, c1 + 1) then
+						if chess_board.board.item (r1 - 1, c1).type /~ "NULL" or chess_board.board.item (r1 - 1, c1 + 1).type /~ "NULL" then
 						knight_block := TRUE
+						end
+					end
+					Result := TRUE
+				end
+				if (r2 = r1 + 1) and (c2 = c1 - 2) then --checking down1 and left2
+					if is_valid_index (r1 + 1, c1) and is_valid_index (r1 + 1, c1 - 1) then
+						if chess_board.board.item (r1 + 1, c1).type /~ "NULL" or chess_board.board.item (r1 + 1, c1 - 1).type /~ "NULL" then
+						knight_block := TRUE
+						end
+					end
+					Result := TRUE
+				end
+				if (r2 = r1 + 1) and (c2 = c1 + 2) then --checking down1 and right2
+					if is_valid_index (r1 + 1, c1) and is_valid_index (r1 + 1, c1 + 1) then
+						if chess_board.board.item (r1 + 1, c1).type /~ "NULL" or chess_board.board.item (r1 + 1, c1 + 1).type /~ "NULL" then
+						knight_block := TRUE
+						end
 					end
 					Result := TRUE
 				end

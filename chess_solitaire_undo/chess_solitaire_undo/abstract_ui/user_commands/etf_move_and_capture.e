@@ -18,6 +18,9 @@ feature -- command
 				model.set_error ("  Error: Game already over%N")
 			elseif model.game_started = FALSE then
 				model.set_error ("  Error: Game not yet started%N")
+			elseif r1 = r2 and c1 = c2 then
+				model.set_error ("  Error: Invalid move of " + model.chess_board.board.item (r1, c1).type + " from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 			elseif r1 < 1 or r1 > 4 or c1 < 1 or c1 > 4 then
 				model.set_error ("  Error: (" + r1.out + ", " + c1.out + ") not a valid slot%N")
 			elseif r2 < 1 or r2 > 4 or c2 < 1 or c2 > 4 then
