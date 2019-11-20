@@ -83,7 +83,7 @@
   .+.+
 ->move_and_capture(4,2,4,4)
   # of chess pieces on board: 6
-  Game In Progress...
+  Game Over: You Lose!
   P.P.
   ..N.
   P.P.

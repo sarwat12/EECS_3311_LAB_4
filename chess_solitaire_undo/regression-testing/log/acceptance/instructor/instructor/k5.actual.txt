@@ -76,7 +76,7 @@
   ...P
 ->move_and_capture(4,4,3,3)
   # of chess pieces on board: 8
-  Game In Progress...
+  Game Over: You Lose!
   PPPP
   ....
   PPPP
@@ -167,7 +167,7 @@
   PPPP
 ->move_and_capture(3,3,2,2)
   # of chess pieces on board: 8
-  Game In Progress...
+  Game Over: You Lose!
   ....
   PPPP
   ....
