@@ -14,7 +14,7 @@ feature --Attributes
 	chess_board: CHESS_UNDO_BOARD
 		local
 			chess_access: CHESS_UNDO_ACCESS
-		once
+		do
 			Result := chess_access.m.chess_board
 		end
 

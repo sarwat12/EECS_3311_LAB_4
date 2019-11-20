@@ -236,9 +236,9 @@
   ....
   ..N.
 ->move_and_capture(2,2,4,3)
-  # of chess pieces on board: 8
-  Error: Block exists between (2, 2) and (4, 3)
+  # of chess pieces on board: 7
+  Game In Progress...
   NNNN
-  NNN.
+  N.N.
   ....
   ..N.
