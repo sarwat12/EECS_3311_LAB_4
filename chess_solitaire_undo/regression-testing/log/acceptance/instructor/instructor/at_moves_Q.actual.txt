@@ -1,0 +1,237 @@
+  # of chess pieces on board: 0
+  Game being Setup...
+  ....
+  ....
+  ....
+  ....
+->setup_chess(Q,1,1)
+  # of chess pieces on board: 1
+  Game being Setup...
+  Q...
+  ....
+  ....
+  ....
+->setup_chess(Q,1,2)
+  # of chess pieces on board: 2
+  Game being Setup...
+  QQ..
+  ....
+  ....
+  ....
+->setup_chess(Q,1,3)
+  # of chess pieces on board: 3
+  Game being Setup...
+  QQQ.
+  ....
+  ....
+  ....
+->setup_chess(Q,1,4)
+  # of chess pieces on board: 4
+  Game being Setup...
+  QQQQ
+  ....
+  ....
+  ....
+->setup_chess(Q,2,1)
+  # of chess pieces on board: 5
+  Game being Setup...
+  QQQQ
+  Q...
+  ....
+  ....
+->setup_chess(Q,2,2)
+  # of chess pieces on board: 6
+  Game being Setup...
+  QQQQ
+  QQ..
+  ....
+  ....
+->setup_chess(Q,2,3)
+  # of chess pieces on board: 7
+  Game being Setup...
+  QQQQ
+  QQQ.
+  ....
+  ....
+->setup_chess(Q,2,4)
+  # of chess pieces on board: 8
+  Game being Setup...
+  QQQQ
+  QQQQ
+  ....
+  ....
+->setup_chess(Q,3,1)
+  # of chess pieces on board: 9
+  Game being Setup...
+  QQQQ
+  QQQQ
+  Q...
+  ....
+->setup_chess(Q,3,2)
+  # of chess pieces on board: 10
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQ..
+  ....
+->setup_chess(Q,3,3)
+  # of chess pieces on board: 11
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQ.
+  ....
+->setup_chess(Q,3,4)
+  # of chess pieces on board: 12
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQQ
+  ....
+->setup_chess(Q,4,1)
+  # of chess pieces on board: 13
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQQ
+  Q...
+->setup_chess(Q,4,2)
+  # of chess pieces on board: 14
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQQ
+  QQ..
+->setup_chess(Q,4,3)
+  # of chess pieces on board: 15
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQQ
+  QQQ.
+->setup_chess(Q,4,4)
+  # of chess pieces on board: 16
+  Game being Setup...
+  QQQQ
+  QQQQ
+  QQQQ
+  QQQQ
+->start_game
+  # of chess pieces on board: 16
+  Game In Progress...
+  QQQQ
+  QQQQ
+  QQQQ
+  QQQQ
+->moves(1,1)
+  # of chess pieces on board: 16
+  Game In Progress...
+  Q+++
+  ++..
+  +.+.
+  +..+
+->moves(1,2)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +Q++
+  +++.
+  .+.+
+  .+..
+->moves(1,3)
+  # of chess pieces on board: 16
+  Game In Progress...
+  ++Q+
+  .+++
+  +.+.
+  ..+.
+->moves(1,4)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +++Q
+  ..++
+  .+.+
+  +..+
+->moves(2,1)
+  # of chess pieces on board: 16
+  Game In Progress...
+  ++..
+  Q+++
+  ++..
+  +.+.
+->moves(2,2)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +++.
+  +Q++
+  +++.
+  .+.+
+->moves(2,3)
+  # of chess pieces on board: 16
+  Game In Progress...
+  .+++
+  ++Q+
+  .+++
+  +.+.
+->moves(2,4)
+  # of chess pieces on board: 16
+  Game In Progress...
+  ..++
+  +++Q
+  ..++
+  .+.+
+->moves(3,1)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +.+.
+  ++..
+  Q+++
+  ++..
+->moves(3,2)
+  # of chess pieces on board: 16
+  Game In Progress...
+  .+.+
+  +++.
+  +Q++
+  +++.
+->moves(3,3)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +.+.
+  .+++
+  ++Q+
+  .+++
+->moves(3,4)
+  # of chess pieces on board: 16
+  Game In Progress...
+  .+.+
+  ..++
+  +++Q
+  ..++
+->moves(4,1)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +..+
+  +.+.
+  ++..
+  Q+++
+->moves(4,2)
+  # of chess pieces on board: 16
+  Game In Progress...
+  .+..
+  .+.+
+  +++.
+  +Q++
+->moves(4,3)
+  # of chess pieces on board: 16
+  Game In Progress...
+  ..+.
+  +.+.
+  .+++
+  ++Q+
+->moves(4,4)
+  # of chess pieces on board: 16
+  Game In Progress...
+  +..+
+  .+.+
+  ..++
+  +++Q

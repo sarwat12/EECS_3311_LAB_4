@@ -12,6 +12,8 @@ create
 	make
 feature -- command
 	move_and_capture(r1: INTEGER_32 ; c1: INTEGER_32 ; r2: INTEGER_32 ; c2: INTEGER_32)
+    	local
+    		command: COMMAND_MOVE_AND_CAPTURE
     	do
 			-- perform some update on the model state
 			if model.game_finished = TRUE then
@@ -30,7 +32,10 @@ feature -- command
 			elseif model.chess_board.board.item (r2, c2).type ~ "NULL" then
 				model.set_error ("  Error: Slot @ (" + r2.out + ", " + c2.out + ") not occupied%N")
 			else
-				model.move_and_capture(r1, c1, r2, c2)
+				create command.make(r1, c1, r2, c2)
+				model.history.add_command (command)
+				command.execute
+				model.set_start_game_redo_trigger (FALSE)
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end

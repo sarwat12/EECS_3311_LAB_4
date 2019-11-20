@@ -31,6 +31,7 @@ feature {NONE} -- Initialization
 			game_finished:= FALSE
 			create start.make_from_string("  Game being Setup...%N")
 			create history.make
+			start_game_redo_trigger := FALSE
 		ensure
 			no_pieces: num_pieces = 0
 		end
@@ -45,18 +46,36 @@ feature --Implementation
 	game_finished: BOOLEAN
 	start: STRING
 	piece_mapping: ARRAY[STRING]  --Mapping for each chess piece to its corresponding integer
+	start_game_redo_trigger: BOOLEAN
 
 
 feature -- chess operations
 
 	undo
 		do
+			if history.after then
+				history.history.back
+			end
 
+			if history.on_item then
+				history.item.undo
+				history.history.back
+			else
+				set_error ("  Error: Nothing to undo%N")
+			end
 		end
 
 	redo
 		do
+			if history.before or (not history.after) then
+				history.history.forth
+			end
 
+			if history.on_item then
+				history.item.redo
+			else
+				set_error ("  Error: Nothing to redo%N")
+			end
 		end
 
 	setup_chess(c: INTEGER ; row: INTEGER_32 ; col: INTEGER_32)
@@ -101,9 +120,7 @@ feature -- chess operations
 			if num_pieces = 0 then
 				set_error ("  Game Over: You Lose!%N")
 				game_finished := TRUE
-			end
-
-			if num_pieces = 1 then
+			elseif num_pieces = 1 then
 				set_error ("  Game Over: You Win!%N")
 				game_finished := TRUE
 			elseif num_pieces = 2 then
@@ -283,6 +300,21 @@ feature -- chess operations
 		do
 			game_finished := b
 			--start := 0
+		end
+
+	set_start_game_redo_trigger(b: BOOLEAN)
+		do
+			start_game_redo_trigger := b
+		end
+
+	increase_num_pieces
+		do
+			num_pieces := num_pieces + 1
+		end
+
+	decrease_num_pieces
+		do
+			num_pieces := num_pieces - 1
 		end
 
 

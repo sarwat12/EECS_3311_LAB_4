@@ -14,6 +14,8 @@ feature -- command
 	setup_chess(c: INTEGER_32 ; row: INTEGER_32 ; col: INTEGER_32)
 		require else
 			setup_chess_precond(c, row, col)
+    	local
+    		command: COMMAND_SETUP_CHESS
     	do
 			-- perform some update on the model state
 			if (model.game_started = TRUE) then
@@ -24,7 +26,10 @@ feature -- command
 				model.set_error ("  Error: Slot @ (" + row.out + ", " + col.out + ") already occupied%N")
 			elseif model.game_started = FALSE and model.chess_board.board.item (row, col).type ~ "NULL" then
 				model.set_error ("  Game being Setup...%N")
-				model.setup_chess(c, row, col)
+				create command.make (c, row, col)
+				model.history.add_command (command)
+				command.execute
+				model.set_start_game_redo_trigger (FALSE)
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
